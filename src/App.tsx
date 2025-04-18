@@ -12,6 +12,10 @@ import MemberEdit from "./pages/MemberEdit";
 import MemberView from "./pages/MemberView";
 import Certificates from "./pages/Certificates";
 import CertificateGenerate from "./pages/CertificateGenerate";
+import Reminders from "./pages/Reminders";
+import Documents from "./pages/Documents";
+import Reports from "./pages/Reports";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +36,10 @@ const App = () => (
             <Route path="/certificates" element={<Certificates />} />
             <Route path="/certificates/generate" element={<CertificateGenerate />} />
             <Route path="/certificates/generate/:memberId" element={<CertificateGenerate />} />
+            <Route path="/reminders" element={<Reminders />} />
+            <Route path="/documents" element={<Documents />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
