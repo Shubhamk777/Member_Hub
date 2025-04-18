@@ -1,9 +1,9 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./components/theme/ThemeProvider";
 import MainLayout from "./components/layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
 import Members from "./pages/Members";
@@ -22,29 +22,31 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/members" element={<Members />} />
-            <Route path="/members/add" element={<MemberAdd />} />
-            <Route path="/members/:id" element={<MemberView />} />
-            <Route path="/members/edit/:id" element={<MemberEdit />} />
-            <Route path="/certificates" element={<Certificates />} />
-            <Route path="/certificates/generate" element={<CertificateGenerate />} />
-            <Route path="/certificates/generate/:memberId" element={<CertificateGenerate />} />
-            <Route path="/reminders" element={<Reminders />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/settings" element={<Settings />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/members" element={<Members />} />
+              <Route path="/members/add" element={<MemberAdd />} />
+              <Route path="/members/:id" element={<MemberView />} />
+              <Route path="/members/edit/:id" element={<MemberEdit />} />
+              <Route path="/certificates" element={<Certificates />} />
+              <Route path="/certificates/generate" element={<CertificateGenerate />} />
+              <Route path="/certificates/generate/:memberId" element={<CertificateGenerate />} />
+              <Route path="/reminders" element={<Reminders />} />
+              <Route path="/documents" element={<Documents />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
