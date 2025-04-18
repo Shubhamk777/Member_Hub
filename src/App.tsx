@@ -1,9 +1,17 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import MainLayout from "./components/layout/MainLayout";
+import Dashboard from "./pages/Dashboard";
+import Members from "./pages/Members";
+import MemberAdd from "./pages/MemberAdd";
+import MemberEdit from "./pages/MemberEdit";
+import MemberView from "./pages/MemberView";
+import Certificates from "./pages/Certificates";
+import CertificateGenerate from "./pages/CertificateGenerate";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -15,8 +23,16 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/members" element={<Members />} />
+            <Route path="/members/add" element={<MemberAdd />} />
+            <Route path="/members/:id" element={<MemberView />} />
+            <Route path="/members/edit/:id" element={<MemberEdit />} />
+            <Route path="/certificates" element={<Certificates />} />
+            <Route path="/certificates/generate" element={<CertificateGenerate />} />
+            <Route path="/certificates/generate/:memberId" element={<CertificateGenerate />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
